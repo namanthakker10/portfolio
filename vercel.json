@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    { "source": "/about", "destination": "/#about", "permanent": false },
+    { "source": "/experience", "destination": "/#experience", "permanent": false },
+    { "source": "/impact", "destination": "/#impact", "permanent": false },
+    { "source": "/work", "destination": "/#work", "permanent": false },
+    { "source": "/stack", "destination": "/#stack", "permanent": false },
+    { "source": "/contact", "destination": "/#contact", "permanent": false }
+  ]
+}

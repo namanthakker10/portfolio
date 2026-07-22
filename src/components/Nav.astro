@@ -2,15 +2,13 @@
 import PillButton from "./PillButton.astro";
 
 const navLinks = [
-  { href: "/about", label: "About" },
-  { href: "/experience", label: "Experience" },
-  { href: "/impact", label: "Impact" },
-  { href: "/work", label: "Work" },
-  { href: "/stack", label: "Stack" },
-  { href: "/contact", label: "Contact" },
+  { href: "#about", label: "About" },
+  { href: "#experience", label: "Experience" },
+  { href: "#impact", label: "Impact" },
+  { href: "#work", label: "Work" },
+  { href: "#stack", label: "Stack" },
+  { href: "#contact", label: "Contact" },
 ];
-
-const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 ---
 
 <header class="fixed top-0 inset-x-0 z-50 border-b border-line/80 bg-bg/80 backdrop-blur-md">
@@ -25,25 +23,21 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 
     <nav class="hidden md:flex md:items-center md:gap-8" aria-label="Primary">
       {
-        navLinks.map((link) => {
-          const isActive = currentPath === link.href;
-          return (
-            <a
-              href={link.href}
-              class={`text-[0.7rem] font-medium uppercase tracking-[0.15em] transition-colors ${
-                isActive ? "text-accent" : "text-muted hover:text-ink"
-              }`}
-              aria-current={isActive ? "page" : undefined}
-            >
-              {link.label}
-            </a>
-          );
-        })
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            data-nav-link
+            data-nav-target={link.href.slice(1)}
+            class="text-[0.7rem] font-medium uppercase tracking-[0.15em] text-muted transition-colors hover:text-ink"
+          >
+            {link.label}
+          </a>
+        ))
       }
     </nav>
 
     <div class="flex items-center gap-4">
-      <PillButton href="/contact" class="hidden md:inline-flex">Get in touch</PillButton>
+      <PillButton href="#contact" class="hidden md:inline-flex">Get in touch</PillButton>
       <button
         id="nav-menu-toggle"
         class="flex h-9 w-9 items-center justify-center text-ink md:hidden"
@@ -57,29 +51,28 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
       </button>
     </div>
   </div>
-
-  <div
-    id="nav-mobile-menu"
-    class="pointer-events-none fixed inset-0 top-16 z-40 flex -translate-y-4 flex-col justify-between border-t border-line bg-bg/98 px-6 py-10 opacity-0 backdrop-blur-md transition-all duration-300 md:hidden"
-  >
-    <nav class="flex flex-col gap-6" aria-label="Mobile">
-      {
-        navLinks.map((link) => {
-          const isActive = currentPath === link.href;
-          return (
-            <a
-              href={link.href}
-              class={`text-3xl font-semibold tracking-tight ${isActive ? "text-accent" : "text-ink"}`}
-            >
-              {link.label}
-            </a>
-          );
-        })
-      }
-    </nav>
-    <PillButton href="/contact" class="w-fit">Get in touch</PillButton>
-  </div>
 </header>
+
+<div
+  id="nav-mobile-menu"
+  class="pointer-events-none fixed inset-x-0 bottom-0 top-16 z-40 flex -translate-y-4 flex-col justify-between border-t border-line bg-bg px-6 py-10 opacity-0 transition-all duration-300 md:hidden"
+>
+  <nav class="flex flex-col gap-6" aria-label="Mobile">
+    {
+      navLinks.map((link) => (
+        <a
+          href={link.href}
+          data-nav-link
+          data-nav-target={link.href.slice(1)}
+          class="text-3xl font-semibold tracking-tight text-ink"
+        >
+          {link.label}
+        </a>
+      ))
+    }
+  </nav>
+  <PillButton href="#contact" class="w-fit">Get in touch</PillButton>
+</div>
 
 <script>
   function setupNavMenu() {
@@ -106,5 +99,41 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
     document.addEventListener("astro:before-swap", closeMenu);
   }
 
+  function setupScrollSpy() {
+    const navLinks = document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]");
+    if (!navLinks.length) return;
+
+    const setActive = (id: string | null) => {
+      navLinks.forEach((link) => {
+        const isActive = link.dataset.navTarget === id;
+        link.classList.toggle("text-accent", isActive);
+        link.classList.toggle("text-muted", !isActive && link.closest("nav")?.getAttribute("aria-label") === "Primary");
+        link.classList.toggle("text-ink", !isActive && link.closest("nav")?.getAttribute("aria-label") === "Mobile");
+        if (isActive) link.setAttribute("aria-current", "page");
+        else link.removeAttribute("aria-current");
+      });
+    };
+
+    const sections = Array.from(navLinks)
+      .map((link) => document.getElementById(link.dataset.navTarget ?? ""))
+      .filter((el): el is HTMLElement => el !== null);
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible.length > 0) {
+          setActive((visible[0].target as HTMLElement).id);
+        }
+      },
+      { rootMargin: "-30% 0px -60% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+  }
+
   document.addEventListener("astro:page-load", setupNavMenu);
+  document.addEventListener("astro:page-load", setupScrollSpy);
 </script>
