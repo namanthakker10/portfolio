@@ -1,0 +1,31 @@
+---
+import type { StackItem } from "../data/stack";
+
+interface Props {
+  item: StackItem;
+}
+const { item } = Astro.props;
+---
+
+<div class="flex flex-col items-center gap-3 rounded-2xl border border-line px-4 py-6 text-center transition-colors duration-300 hover:border-accent/60">
+  <div class="relative flex h-10 w-10 items-center justify-center">
+    {
+      item.icon && (
+        <img
+          src={item.icon}
+          alt=""
+          class="h-8 w-8 object-contain"
+          loading="lazy"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+      )
+    }
+    <span
+      style={item.icon ? "display:none" : "display:flex"}
+      class="h-8 w-8 items-center justify-center rounded-full border border-line text-[9px] font-bold uppercase text-muted"
+    >
+      {item.initials ?? item.name.slice(0, 2)}
+    </span>
+  </div>
+  <span class="text-xs font-medium text-muted">{item.name}</span>
+</div>

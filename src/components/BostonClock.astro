@@ -1,0 +1,31 @@
+---
+interface Props {
+  class?: string;
+}
+const { class: className = "" } = Astro.props;
+---
+
+<div class={`boston-clock font-mono text-xs uppercase tracking-[0.2em] text-muted ${className}`}>
+  <span data-clock-time>--:--:--</span>
+  <span class="ml-2 text-muted-dim">BOS</span>
+</div>
+
+<script>
+  function tick() {
+    const els = document.querySelectorAll<HTMLElement>("[data-clock-time]");
+    if (!els.length) return;
+    const formatter = new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/New_York",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false,
+    });
+    const time = formatter.format(new Date());
+    els.forEach((el) => (el.textContent = time));
+  }
+
+  tick();
+  setInterval(tick, 1000);
+  document.addEventListener("astro:page-load", tick);
+</script>

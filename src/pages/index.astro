@@ -1,0 +1,56 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PillButton from "../components/PillButton.astro";
+import BostonClock from "../components/BostonClock.astro";
+---
+
+<Layout title="Home">
+  <section class="relative flex min-h-[calc(100vh-4rem)] flex-col justify-center overflow-hidden px-6 py-20 md:px-10">
+    <div class="pointer-events-none absolute right-6 top-8 md:right-10 md:top-10">
+      <BostonClock />
+    </div>
+
+    <div class="mx-auto grid w-full max-w-7xl gap-12 md:grid-cols-[1.5fr_0.5fr] md:items-end">
+      <div data-hero>
+        <h1
+          class="font-sans text-[15vw] font-extrabold leading-[0.88] tracking-tighter text-ink md:text-[8vw]"
+        >
+          <span data-hero-line class="block overflow-hidden"
+            ><span class="block">Naman</span></span
+          >
+          <span data-hero-line class="block overflow-hidden"
+            ><span class="block">Thakker</span></span
+          >
+        </h1>
+
+        <p data-hero-fade class="mt-8 max-w-xl text-lg text-muted md:text-xl">
+          Better operations. Cleaner data. Real solutions.
+        </p>
+
+        <div data-hero-fade class="mt-10 flex flex-wrap gap-4">
+          <PillButton href="mailto:thakker.n@northeastern.edu">Email</PillButton>
+          <PillButton href="https://www.linkedin.com/in/namanthakker" external>LinkedIn</PillButton>
+          <PillButton href="/resume.pdf" external>Resume</PillButton>
+        </div>
+      </div>
+
+      <div
+        data-reveal
+        class="relative mx-auto aspect-[4/5] w-full max-w-[220px] overflow-hidden rounded-2xl border border-dashed border-line md:mx-0 md:max-w-none"
+      >
+        <img
+          src="/photo.jpg"
+          alt="Naman Thakker"
+          class="h-full w-full object-cover"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div
+          style="display:none"
+          class="absolute inset-0 flex-col items-center justify-center gap-2 bg-white/[0.02] text-center"
+        >
+          <span class="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-dim">Photo</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

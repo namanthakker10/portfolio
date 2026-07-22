@@ -1,0 +1,129 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionLabel from "../components/SectionLabel.astro";
+
+const links = [
+  { label: "Email", href: "mailto:thakker.n@northeastern.edu" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/namanthakker" },
+  { label: "GitHub", href: "https://github.com/namanthakker10" },
+  { label: "Resume", href: "/resume.pdf" },
+];
+
+const inputClasses =
+  "w-full rounded-lg border border-line bg-white/[0.03] px-4 py-3 text-sm text-ink placeholder:text-muted-dim focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent transition-colors";
+const labelClasses = "text-xs font-medium uppercase tracking-[0.2em] text-muted";
+---
+
+<Layout title="Contact">
+  <section class="mx-auto max-w-6xl px-6 py-24 md:px-10 md:py-32">
+    <SectionLabel label="Contact" />
+    <h1 data-reveal class="mt-8 text-4xl font-extrabold leading-[0.95] tracking-tight text-ink md:text-6xl">
+      Let's talk
+    </h1>
+
+    <div class="mt-16 grid gap-16 md:grid-cols-2 md:gap-24">
+      <div data-reveal class="flex flex-col justify-between gap-12">
+        <div class="flex flex-wrap gap-x-8 gap-y-4">
+          {
+            links.map((link) => (
+              <a
+                href={link.href}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                class="text-sm font-medium uppercase tracking-[0.15em] text-ink transition-colors hover:text-accent"
+              >
+                {link.label}
+              </a>
+            ))
+          }
+        </div>
+        <p class="text-2xl font-semibold tracking-tight text-muted md:text-3xl">
+          Hard problems welcome.
+        </p>
+      </div>
+
+      <form
+        id="contact-form"
+        data-reveal
+        action="https://formspree.io/f/thakker.n@northeastern.edu"
+        method="POST"
+        class="flex flex-col gap-6"
+      >
+        <div class="grid gap-6 sm:grid-cols-2">
+          <div class="flex flex-col gap-2">
+            <label for="name" class={labelClasses}>Name</label>
+            <input id="name" name="name" type="text" required class={inputClasses} placeholder="Your name" />
+          </div>
+          <div class="flex flex-col gap-2">
+            <label for="email" class={labelClasses}>Email</label>
+            <input id="email" name="email" type="email" required class={inputClasses} placeholder="you@example.com" />
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="subject" class={labelClasses}>Subject</label>
+          <input id="subject" name="subject" type="text" required class={inputClasses} placeholder="What's this about?" />
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="message" class={labelClasses}>Message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="6"
+            required
+            class={`${inputClasses} resize-none`}
+            placeholder="Tell me a bit more..."
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="mt-2 w-fit rounded-full bg-accent px-7 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-white transition-opacity hover:opacity-90 disabled:opacity-50"
+        >
+          Send Message
+        </button>
+
+        <p id="contact-form-status" class="text-sm text-muted" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  function setupContactForm() {
+    const form = document.getElementById("contact-form") as HTMLFormElement | null;
+    if (!form) return;
+    const status = document.getElementById("contact-form-status");
+    const button = form.querySelector("button[type=submit]") as HTMLButtonElement | null;
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (!status || !button) return;
+
+      button.disabled = true;
+      status.textContent = "Sending...";
+
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { Accept: "application/json" },
+        });
+
+        if (response.ok) {
+          status.textContent = "Message sent — I'll get back to you soon.";
+          form.reset();
+        } else {
+          status.textContent = "Something went wrong. Try emailing me directly instead.";
+        }
+      } catch {
+        status.textContent = "Something went wrong. Try emailing me directly instead.";
+      } finally {
+        button.disabled = false;
+      }
+    });
+  }
+
+  document.addEventListener("astro:page-load", setupContactForm);
+</script>

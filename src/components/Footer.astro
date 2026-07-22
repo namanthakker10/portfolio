@@ -1,0 +1,30 @@
+---
+const year = new Date().getFullYear();
+const links = [
+  { href: "mailto:thakker.n@northeastern.edu", label: "Email" },
+  { href: "https://www.linkedin.com/in/namanthakker", label: "LinkedIn" },
+  { href: "https://github.com/namanthakker10", label: "GitHub" },
+];
+---
+
+<footer class="border-t border-line px-6 py-10 md:px-10">
+  <div class="mx-auto flex max-w-7xl flex-col gap-6 md:flex-row md:items-center md:justify-between">
+    <p class="font-mono text-xs uppercase tracking-[0.2em] text-muted-dim">
+      &copy; {year} Naman Thakker
+    </p>
+    <div class="flex flex-wrap items-center gap-6">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            target={link.href.startsWith("http") ? "_blank" : undefined}
+            rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+            class="text-xs font-medium uppercase tracking-[0.15em] text-muted transition-colors hover:text-accent"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</footer>

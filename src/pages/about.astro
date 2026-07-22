@@ -1,0 +1,42 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionLabel from "../components/SectionLabel.astro";
+---
+
+<Layout title="About">
+  <section class="mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-32">
+    <SectionLabel label="About" />
+
+    <div class="mt-8 grid gap-16 md:grid-cols-[0.55fr_1fr] md:items-start">
+      <div
+        data-reveal
+        class="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-2xl border border-dashed border-line md:mx-0"
+      >
+        <img
+          src="/about-photo.jpg"
+          alt="Naman Thakker"
+          class="h-full w-full object-cover"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div
+          style="display:none"
+          class="absolute inset-0 flex-col items-center justify-center gap-2 bg-white/[0.02] text-center"
+        >
+          <span class="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-dim">Photo</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-8">
+        <h1 data-reveal class="text-4xl font-extrabold leading-[0.95] tracking-tight text-ink md:text-6xl">
+          About
+        </h1>
+
+        <p data-reveal class="max-w-2xl text-lg leading-relaxed text-muted md:text-xl">
+          <!-- TODO: replace with your bio paragraph -->
+          Bio coming soon — a short paragraph on who you are, what you care about, and how you
+          approach operations and data work will go here.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>

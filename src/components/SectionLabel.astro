@@ -1,0 +1,15 @@
+---
+interface Props {
+  label: string;
+  class?: string;
+  align?: "left" | "center";
+}
+const { label, class: className = "", align = "left" } = Astro.props;
+---
+
+<p
+  class={`gsap-reveal font-mono text-xs uppercase tracking-[0.3em] text-accent ${align === "center" ? "text-center" : ""} ${className}`}
+  data-reveal="label"
+>
+  [&nbsp;{label}&nbsp;]
+</p>
