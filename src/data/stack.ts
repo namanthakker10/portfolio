@@ -59,7 +59,7 @@ export const stackGroups: StackGroup[] = [
     items: [
       { name: "React", icon: devicon("react") },
       { name: "Vite", icon: devicon("vitejs") },
-      { name: "Tailwind CSS", icon: devicon("tailwindcss", "plain") },
+      { name: "Tailwind CSS", icon: devicon("tailwindcss") },
       { name: "Three.js", icon: simpleicon("threedotjs", "ffffff") },
       { name: "D3.js", icon: simpleicon("d3") },
     ],

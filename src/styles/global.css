@@ -7,7 +7,9 @@
   --color-muted-dim: #5c5c63;
   --color-accent: #2f6bff;
   --color-line: #1f1f22;
-  --font-sans: "Inter", "Inter Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-sans:
+    "Neue Haas Grotesk Text", "Neue Haas Grotesk Display", "Hanken Grotesk", "Inter",
+    ui-sans-serif, system-ui, sans-serif;
 }
 
 html {

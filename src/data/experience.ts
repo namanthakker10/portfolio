@@ -16,7 +16,8 @@ export const experience: ExperienceEntry[] = [
     period: "Expected May 2028",
     side: "left",
     category: "education",
-    description: "Bachelor of Science in Business Administration.",
+    description:
+      "BSBA in Supply Chain with a Data Science minor. GPA 3.43. Relevant coursework: Global Supply Chain Strategy, Intro to Databases, Mathematical Foundations of AI.",
   },
   {
     org: "Global Markets Association",
@@ -24,6 +25,8 @@ export const experience: ExperienceEntry[] = [
     period: "Ongoing",
     side: "right",
     category: "leadership",
+    description:
+      "Produced real-world market reports and presentations covering global macro trends, equities, and financial data. Developed research frameworks and presented findings to the broader analyst team.",
   },
   {
     org: "CASE Northeastern",
@@ -31,6 +34,8 @@ export const experience: ExperienceEntry[] = [
     period: "Ongoing",
     side: "right",
     category: "leadership",
+    description:
+      "Senior Consultant on a real client engagement with an HVAC company — used data analysis to identify operational inefficiencies and built recommendations backed by quantified impact. Delivered findings in structured presentations to client stakeholders.",
   },
   {
     org: "Bhairav Exports",
@@ -38,6 +43,8 @@ export const experience: ExperienceEntry[] = [
     period: "Apr – Jun 2025",
     side: "right",
     category: "work",
+    description:
+      "Built a Python time-series forecasting model cutting costs 7.5% in a quarter. Optimized freight and logistics across West Africa — Nigeria, Kenya, Tanzania, Benin — reducing freight costs 3% per container.",
   },
   {
     org: "MedTourEasy",
@@ -45,6 +52,8 @@ export const experience: ExperienceEntry[] = [
     period: "Jul – Sep 2025",
     side: "right",
     category: "work",
+    description:
+      "Analyzed 300+ patient records using SQL and R to build data visualizations and statistical models informing international expansion strategy. Improved patient satisfaction scores by 13% through feedback analysis.",
   },
   {
     org: "TJX Companies",
@@ -52,12 +61,7 @@ export const experience: ExperienceEntry[] = [
     period: "Jan – Jun 2026",
     side: "right",
     category: "work",
-  },
-  {
-    org: "LSE Summer School",
-    role: "Managerial Accounting — AC101",
-    period: "July 2026",
-    side: "left",
-    category: "education",
+    description:
+      "Led process improvement across 20+ Lean projects spanning 5 distribution centers. Built Power BI dashboards replacing manual tracking, automated reporting workflows, and drove measurable loss reduction across TJ Maxx, Marshalls, HomeGoods, and Sierra.",
   },
 ];
