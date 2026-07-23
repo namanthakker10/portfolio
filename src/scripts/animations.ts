@@ -71,20 +71,32 @@ function initHero() {
 function initTimelineComet() {
   const spine = document.querySelector<HTMLElement>("[data-timeline-spine]");
   const comet = document.querySelector<HTMLElement>("[data-timeline-comet]");
+  const progress = document.querySelector<HTMLElement>("[data-timeline-progress]");
   const container = document.querySelector<HTMLElement>("[data-timeline]");
   if (!spine || !comet || !container) return;
+
+  const scrollConfig = {
+    trigger: spine,
+    start: "top 40%",
+    end: "bottom 60%",
+    scrub: 0.6,
+  };
 
   gsap.set(comet, { top: 0 });
   gsap.to(comet, {
     top: "100%",
     ease: "none",
-    scrollTrigger: {
-      trigger: spine,
-      start: "top 40%",
-      end: "bottom 60%",
-      scrub: 0.6,
-    },
+    scrollTrigger: { ...scrollConfig },
   });
+
+  if (progress) {
+    gsap.set(progress, { height: "0%" });
+    gsap.to(progress, {
+      height: "100%",
+      ease: "none",
+      scrollTrigger: { ...scrollConfig },
+    });
+  }
 
   const nodes = gsap.utils.toArray<HTMLElement>("[data-timeline-node]");
   nodes.forEach((node) => {

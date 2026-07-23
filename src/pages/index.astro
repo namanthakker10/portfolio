@@ -27,6 +27,15 @@ const categoryStyles: Record<ExperienceCategory, { node: string; org: string; ta
   },
 };
 
+let lastTimelineYear: string | null = null;
+const timelineEntries = experience.map((entry) => {
+  const matches = entry.period.match(/20\d{2}/g);
+  const year = matches ? matches[matches.length - 1] : null;
+  const showYear = year !== null && year !== lastTimelineYear;
+  if (year) lastTimelineYear = year;
+  return { ...entry, year, showYear };
+});
+
 const contactLinks = [
   { label: "Email", href: "mailto:thakker.n@northeastern.edu" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/namanthakker" },
@@ -157,22 +166,35 @@ const labelClasses = "text-xs font-medium uppercase tracking-[0.2em] text-muted"
     </p>
 
     <div data-timeline class="relative mt-24 pb-12">
-      <div data-timeline-spine class="absolute left-4 top-0 h-full w-px bg-line md:left-1/2"></div>
+      <div
+        data-timeline-spine
+        class="absolute left-4 top-0 z-0 h-full w-px bg-line md:left-1/2"
+      ></div>
+      <div
+        data-timeline-progress
+        class="absolute left-4 top-0 z-[1] w-px bg-accent md:left-1/2"
+        style="height:0%"
+      ></div>
       <div
         data-timeline-comet
-        class="absolute left-4 top-0 h-3 w-3 -translate-x-1/2 rounded-full bg-accent shadow-[0_0_18px_4px_rgba(47,107,255,0.55)] md:left-1/2"
+        class="absolute left-4 top-0 z-[2] h-3 w-3 -translate-x-1/2 rounded-full bg-accent shadow-[0_0_18px_4px_rgba(47,107,255,0.55)] md:left-1/2"
       >
       </div>
 
       {
-        experience.map((entry) => {
+        timelineEntries.map((entry) => {
           const styles = categoryStyles[entry.category];
           const isLeft = entry.side === "left";
           return (
             <div class="relative py-8 md:py-10">
+              {entry.showYear && (
+                <span class="absolute left-4 top-0 z-[3] -translate-x-1/2 -translate-y-1/2 rounded-full border border-line bg-bg px-2.5 py-1 font-mono text-[0.65rem] font-bold tracking-[0.1em] text-muted-dim md:left-1/2">
+                  {entry.year}
+                </span>
+              )}
               <div
                 data-timeline-node
-                class={`absolute left-4 top-7 h-3 w-3 -translate-x-1/2 rounded-full border-2 md:left-1/2 ${styles.node}`}
+                class={`absolute left-4 top-7 z-[3] h-3 w-3 -translate-x-1/2 rounded-full border-2 md:left-1/2 ${styles.node}`}
               />
               <div
                 data-timeline-card
@@ -187,9 +209,6 @@ const labelClasses = "text-xs font-medium uppercase tracking-[0.2em] text-muted"
                 </span>
                 <h3 class="mt-2 text-xl font-bold text-ink md:text-2xl">{entry.org}</h3>
                 <p class="mt-1 text-sm font-medium text-muted md:text-base">{entry.role}</p>
-                <p class="mt-3 font-mono text-xs uppercase tracking-[0.15em] text-muted-dim">
-                  {entry.period}
-                </p>
                 {entry.description && (
                   <p class="mt-4 text-sm leading-relaxed text-muted">{entry.description}</p>
                 )}

@@ -15,6 +15,11 @@ const devicon = (slug: string, variant = "original") =>
 const simpleicon = (slug: string, color?: string) =>
   `https://cdn.simpleicons.org/${slug}${color ? `/${color}` : ""}`;
 
+// Iconify aggregates devicon/simple-icons plus dedicated brand-logo sets
+// (svg-logos, mdi, file-icons, arcticons) for tools missing from the two above.
+const iconify = (prefix: string, name: string, color?: string) =>
+  `https://api.iconify.design/${prefix}/${name}.svg${color ? `?color=%23${color}` : ""}`;
+
 export const stackGroups: StackGroup[] = [
   {
     label: "Languages",
@@ -27,21 +32,21 @@ export const stackGroups: StackGroup[] = [
   {
     label: "Analytics",
     items: [
-      { name: "Power BI", initials: "BI" },
-      { name: "Tableau", initials: "TB" },
-      { name: "Excel", initials: "XL" },
+      { name: "Power BI", icon: iconify("logos", "microsoft-power-bi") },
+      { name: "Tableau", icon: iconify("logos", "tableau-icon") },
+      { name: "Excel", icon: iconify("mdi", "microsoft-excel", "217346") },
       { name: "Matplotlib", icon: devicon("matplotlib") },
-      { name: "Seaborn", initials: "SB" },
+      { name: "Seaborn", icon: iconify("devicon", "seaborn") },
     ],
   },
   {
     label: "Tools",
     items: [
-      { name: "Power Automate", initials: "PA" },
+      { name: "Power Automate", icon: iconify("arcticons", "microsoft-power-automate", "ffffff") },
       { name: "MySQL Workbench", icon: devicon("mysql") },
       { name: "GitHub Actions", icon: simpleicon("githubactions") },
       { name: "Figma", icon: devicon("figma") },
-      { name: "MS Visio", initials: "VS" },
+      { name: "MS Visio", icon: iconify("file-icons", "microsoft-visio", "3955A3") },
     ],
   },
   {
@@ -69,7 +74,7 @@ export const stackGroups: StackGroup[] = [
     items: [
       { name: "Lean Six Sigma Yellow Belt", initials: "LSS" },
       { name: "Google Data Analytics", icon: simpleicon("google") },
-      { name: "Bloomberg Market Concepts", initials: "BMC" },
+      { name: "Bloomberg Market Concepts", icon: iconify("pixel", "bloomberg", "ffffff") },
     ],
   },
 ];
