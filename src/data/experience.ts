@@ -15,7 +15,7 @@ export const experience: ExperienceEntry[] = [
     org: "Global Markets Association",
     role: "Research Analyst",
     period: "Ongoing",
-    side: "right",
+    side: "left",
     category: "leadership",
     bullets: [
       "Conducted equity research across industries, companies, and individual securities to develop investment theses",
@@ -39,7 +39,7 @@ export const experience: ExperienceEntry[] = [
     org: "Bhairav Exports",
     role: "Supply Chain Data Analyst",
     period: "Apr – Jun 2025",
-    side: "right",
+    side: "left",
     category: "work",
     bullets: [
       "Developed a Python time-series forecasting model to resolve inventory shortages • reduced costs ~7.5% within a quarter",
@@ -63,7 +63,7 @@ export const experience: ExperienceEntry[] = [
     org: "TJX Companies",
     role: "Global Continuous Improvement Intern",
     period: "Jan – Jun 2026",
-    side: "right",
+    side: "left",
     category: "work",
     bullets: [
       "Drove operational efficiency across 5 distribution centers (TJ Maxx, Marshalls, HomeGoods, Sierra) through 20+ improvement initiatives",
