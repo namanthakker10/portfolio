@@ -12,15 +12,6 @@ export interface ExperienceEntry {
 
 export const experience: ExperienceEntry[] = [
   {
-    org: "Northeastern University",
-    role: "BSBA, Supply Chain Management — Data Science Minor",
-    period: "Expected May 2028",
-    side: "left",
-    category: "education",
-    description:
-      "BSBA in Supply Chain with a Data Science minor. GPA 3.43. Relevant coursework: Global Supply Chain Strategy, Intro to Databases, Mathematical Foundations of AI.",
-  },
-  {
     org: "Global Markets Association",
     role: "Research Analyst",
     period: "Ongoing",
