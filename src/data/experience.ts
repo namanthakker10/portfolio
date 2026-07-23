@@ -36,7 +36,7 @@ export const experience: ExperienceEntry[] = [
     ],
   },
   {
-    org: "Bhairav Exports",
+    org: "Bhairav Exports Industry Pvt. Ltd.",
     role: "Supply Chain Data Analyst",
     period: "Apr – Jun 2025",
     side: "left",
