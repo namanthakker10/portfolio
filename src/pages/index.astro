@@ -195,8 +195,8 @@ const labelClasses = "text-xs font-medium uppercase tracking-[0.2em] text-muted"
               />
               <div
                 data-timeline-card
-                class={`ml-12 rounded-2xl border border-line bg-white/[0.015] p-6 md:ml-0 md:w-[calc(50%-2.5rem)] ${
-                  isLeft ? "md:mr-auto md:text-right" : "md:ml-auto md:text-left"
+                class={`ml-12 rounded-2xl border border-line bg-white/[0.015] p-6 text-left md:ml-0 md:w-[calc(50%-2.5rem)] ${
+                  isLeft ? "md:mr-auto" : "md:ml-auto"
                 }`}
               >
                 <span
@@ -209,7 +209,7 @@ const labelClasses = "text-xs font-medium uppercase tracking-[0.2em] text-muted"
                 {entry.bullets && (
                   <ul class="mt-4 flex flex-col gap-2 text-sm leading-relaxed text-muted">
                     {entry.bullets.map((bullet) => (
-                      <li class={`flex gap-2 ${isLeft ? "flex-row-reverse text-right" : "text-left"}`}>
+                      <li class="flex gap-2 text-left">
                         <span class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent/70" />
                         <span>{bullet}</span>
                       </li>
