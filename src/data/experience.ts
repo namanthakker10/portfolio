@@ -7,6 +7,7 @@ export interface ExperienceEntry {
   side: "left" | "right";
   category: ExperienceCategory;
   description?: string;
+  bullets?: string[];
 }
 
 export const experience: ExperienceEntry[] = [
@@ -25,8 +26,11 @@ export const experience: ExperienceEntry[] = [
     period: "Ongoing",
     side: "right",
     category: "leadership",
-    description:
-      "Produced real-world market reports and presentations covering global macro trends, equities, and financial data. Developed research frameworks and presented findings to the broader analyst team.",
+    bullets: [
+      "Conducted equity research across industries, companies, and individual securities to develop investment theses",
+      "Authored research reports articulating each thesis and its supporting rationale • pitched recommendations to the association",
+      "Defended investment views with evidence-based reasoning • strengthened analytical and valuation judgment",
+    ],
   },
   {
     org: "CASE Northeastern",
@@ -34,8 +38,11 @@ export const experience: ExperienceEntry[] = [
     period: "Ongoing",
     side: "right",
     category: "leadership",
-    description:
-      "Senior Consultant on a real client engagement with an HVAC company — used data analysis to identify operational inefficiencies and built recommendations backed by quantified impact. Delivered findings in structured presentations to client stakeholders.",
+    bullets: [
+      "Directed market-expansion strategy for client Fortify Companies on an 8-person team across a full-semester engagement",
+      "Conducted competitive and market-sizing analysis that formed the foundation of the team's core recommendation",
+      "Owned analysis and client deliverables end-to-end • presented findings to company leadership at mid-point and final reviews",
+    ],
   },
   {
     org: "Bhairav Exports",
@@ -43,8 +50,11 @@ export const experience: ExperienceEntry[] = [
     period: "Apr – Jun 2025",
     side: "right",
     category: "work",
-    description:
-      "Built a Python time-series forecasting model cutting costs 7.5% in a quarter. Optimized freight and logistics across West Africa — Nigeria, Kenya, Tanzania, Benin — reducing freight costs 3% per container.",
+    bullets: [
+      "Developed a Python time-series forecasting model to resolve inventory shortages • reduced costs ~7.5% within a quarter",
+      "Analyzed export shipment data across West African markets (Nigeria, Kenya, Tanzania, Benin) • lowered freight costs 3% per container",
+      "Built an automated KPI reporting tool adopted into the sales team's standing workflow",
+    ],
   },
   {
     org: "MedTourEasy",
@@ -52,8 +62,11 @@ export const experience: ExperienceEntry[] = [
     period: "Jul – Sep 2025",
     side: "right",
     category: "work",
-    description:
-      "Analyzed 300+ patient records using SQL and R to build data visualizations and statistical models informing international expansion strategy. Improved patient satisfaction scores by 13% through feedback analysis.",
+    bullets: [
+      "Analyzed a 300+ record patient database to inform senior leadership's international market-expansion strategy",
+      "Translated raw data into executive-ready visualizations and presentations that shaped the expansion decision",
+      "Identified service gaps through patient-feedback analysis • improved satisfaction scores 13%",
+    ],
   },
   {
     org: "TJX Companies",
@@ -61,7 +74,11 @@ export const experience: ExperienceEntry[] = [
     period: "Jan – Jun 2026",
     side: "right",
     category: "work",
-    description:
-      "Led process improvement across 20+ Lean projects spanning 5 distribution centers. Built Power BI dashboards replacing manual tracking, automated reporting workflows, and drove measurable loss reduction across TJ Maxx, Marshalls, HomeGoods, and Sierra.",
+    bullets: [
+      "Drove operational efficiency across 5 distribution centers (TJ Maxx, Marshalls, HomeGoods, Sierra) through 20+ improvement initiatives",
+      "Engineered a real-time dashboard for loss and damage tracking • reduced unaccounted inventory losses by 0.8%",
+      "Automated recurring reporting workflows • reclaimed ~1.5 hrs/week per associate • increased project visibility 30%",
+      "Developed 4+ analytics dashboards and mapped operational workflows to identify and eliminate process bottlenecks",
+    ],
   },
 ];

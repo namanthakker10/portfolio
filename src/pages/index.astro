@@ -209,6 +209,16 @@ const labelClasses = "text-xs font-medium uppercase tracking-[0.2em] text-muted"
                 </span>
                 <h3 class="mt-2 text-xl font-bold text-ink md:text-2xl">{entry.org}</h3>
                 <p class="mt-1 text-sm font-medium text-muted md:text-base">{entry.role}</p>
+                {entry.bullets && (
+                  <ul class="mt-4 flex flex-col gap-2 text-sm leading-relaxed text-muted">
+                    {entry.bullets.map((bullet) => (
+                      <li class={`flex gap-2 ${isLeft ? "flex-row-reverse text-right" : "text-left"}`}>
+                        <span class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent/70" />
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
                 {entry.description && (
                   <p class="mt-4 text-sm leading-relaxed text-muted">{entry.description}</p>
                 )}
